@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('powertrains', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('vehicle_id');
+            $table->string('type');
+            $table->string('health');
+            $table->string('brand')->nullable();
+            $table->string('model')->nullable();
+            $table->unsignedInteger('manufacture_year')->nullable();
+            $table->string('oem_number')->nullable();
             $table->timestamps();
+
+            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+
         });
     }
 

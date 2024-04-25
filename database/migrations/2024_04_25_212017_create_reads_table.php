@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eletronics', function (Blueprint $table) {
+        Schema::create('reads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vehicle_id');
-            $table->string('type');
-            $table->string('health');
-            $table->string('brand')->nullable();
-            $table->string('model')->nullable();
-            $table->unsignedInteger('manufacture_year')->nullable();
-            $table->string('oem_number')->nullable();
+            $table->string('parameter');
+            $table->string('value');
             $table->timestamps();
 
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
+
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eletronics');
+        Schema::dropIfExists('reads');
     }
 };
