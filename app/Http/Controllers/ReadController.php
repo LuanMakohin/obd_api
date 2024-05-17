@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReadRequest;
 use App\Models\Read;
-use Illuminate\Http\Request;
 
 class ReadController extends Controller
 {
