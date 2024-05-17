@@ -14,7 +14,16 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        //
+        $manufacturers = Manufacturer::get()->all();
+
+        if (sizeof($manufacturers) === 0) {
+            return response()->json([
+                'message' => 'No Manufacturers found',
+            ], 200);
+        }
+
+        return response()->json($manufacturers, 200);
+
     }
 
 
@@ -23,42 +32,61 @@ class ManufacturerController extends Controller
      */
     public function store(ManufacturerRequest $request)
     {
-
         $manufacturer = Manufacturer::create($request->all());
 
         return response()->json($manufacturer, 201);
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Manufacturer $manufacturer)
+    public function show($id)
     {
-        //
+        $manufacturer = Manufacturer::find($id);
+
+        if (!$manufacturer) {
+            return response()->json([
+                'message' => 'Manufacturer not found',
+            ], 200);
+        }
+
+        return response()->json($manufacturer, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Manufacturer $manufacturer)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Manufacturer $manufacturer)
+    public function update(ManufacturerRequest $request,  $id)
     {
-        //
+        $manufacturer = Manufacturer::find($id);
+
+        if (!$manufacturer) {
+            return response()->json([
+                'message' => 'Manufacturer not found',
+            ], 200);
+        }
+
+        $manufacturer->update($request->all());
+
+        return response()->json($manufacturer, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Manufacturer $manufacturer)
+    public function destroy($id)
     {
-        //
+        $manufacturer = Manufacturer::find($id);
+
+        if (!$manufacturer) {
+            return response()->json([
+                'message' => 'Manufacturer not found',
+            ], 200);
+        }
+
+        $manufacturer->delete();
+
+        return response()->json([], 204);
     }
 }
