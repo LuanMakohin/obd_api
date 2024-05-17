@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReadRequest;
 use App\Models\Read;
 use Illuminate\Http\Request;
 
@@ -12,54 +13,79 @@ class ReadController extends Controller
      */
     public function index()
     {
-        //
+        $reads = Read::with('vehicle')->get()->all();
+
+        if (sizeof($reads) === 0) {
+            return response()->json([
+                'message' => 'No Reads found',
+            ], 200);
+        }
+
+        return response()->json($reads, 200);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReadRequest $request)
     {
-        //
+        $read = Read::create($request->all());
+
+        return response()->json($read, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Read $read)
+    public function show($id)
     {
-        //
+        $read = Read::with('vehicle')->where('id', '=' ,$id)->first();
+
+        if (!$read) {
+            return response()->json([
+                'message' => 'Read not found',
+            ], 200);
+        }
+
+        return response()->json($read, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Read $read)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Read $read)
+    public function update(ReadRequest $request,  $id)
     {
-        //
+        $read = Read::find($id);
+
+        if (!$read) {
+            return response()->json([
+                'message' => 'Read not found',
+            ], 200);
+        }
+
+        $read->update($request->all());
+
+        return response()->json($read, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Read $read)
+    public function destroy($id)
     {
-        //
+        $read = Read::find($id);
+
+        if (!$read) {
+            return response()->json([
+                'message' => 'Read not found',
+            ], 200);
+        }
+
+        $read->delete();
+
+        return response()->json([], 204);
     }
 }
