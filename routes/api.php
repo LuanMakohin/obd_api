@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\ReadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('manufacturers', \App\Http\Controllers\ManufacturerController::class);
-Route::resource('vehicles', \App\Http\Controllers\VehicleController::class);
-Route::resource('reads', \App\Http\Controllers\ReadController::class);
+Route::post('register',[UserAuthController::class,'register'])->name('register');
+Route::post('login',[UserAuthController::class,'login'])->name('login');
+Route::post('logout',[UserAuthController::class,'logout'])->name('logout')->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('manufacturers', ManufacturerController::class);
+    Route::resource('vehicles', VehicleController::class);
+    Route::resource('reads', ReadController::class);
+});
