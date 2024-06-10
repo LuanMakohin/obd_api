@@ -12,12 +12,12 @@ class FeaturesController extends Controller
         $user = User::find($userId);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found.'], 404);
+            return response()->json(['error' => 'Usuário não encontrado.'], 404);
         }
         $vehicles = $user->vehicles;
 
         if (!$vehicles || $vehicles->count() === 0) {
-            return response()->json(['error' => 'This user has no vehicles.'], 404);
+            return response()->json(['error' => 'Este usuário não possui veículos.'], 404);
         }
 
         $vehicleIds = $vehicles->pluck('id');
@@ -36,7 +36,7 @@ class FeaturesController extends Controller
 
 
         if (!$readings || $readings->count() === 0) {
-            return response()->json(['error' => 'This vehicle has no readings in the last week.'], 404);
+            return response()->json(['error' => 'Este veículo não possui leituras na última semana.'], 404);
         }
 
         return response()->json($readings, 200);
@@ -48,12 +48,12 @@ class FeaturesController extends Controller
         $user = User::find($userId);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found.'], 404);
+            return response()->json(['error' => 'Usuário não encontrado.'], 404);
         }
         $vehicles = $user->vehicles;
 
         if (!$vehicles || $vehicles->count() === 0) {
-            return response()->json(['error' => 'This user has no vehicles.'], 404);
+            return response()->json(['error' => 'Este usuário não possui veículos.'], 404);
         }
 
         $vehicleIds = $vehicles->pluck('id');
@@ -72,7 +72,7 @@ class FeaturesController extends Controller
 
 
         if (!$readings || $readings->count() === 0) {
-            return response()->json(['error' => 'This vehicle has no readings in the last week.'], 404);
+            return response()->json(['error' => 'Este veículo não possui leituras na última semana.'], 404);
         }
 
         $anomalies = [];
@@ -106,7 +106,7 @@ class FeaturesController extends Controller
         }
 
         if (empty($anomalies)) {
-            return response()->json(['message' => 'No abnormal readings found.'], 200);
+            return response()->json(['message' => 'Nenhuma leitura anormal encontrada.'], 200);
         }
 
         return response()->json($anomalies, 200);
@@ -116,13 +116,13 @@ class FeaturesController extends Controller
         $user = User::find($userId);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found.'], 404);
+            return response()->json(['error' => 'Usuário não encontrado.'], 404);
         }
 
         $vehicles = $user->vehicles;
 
         if (!$vehicles || $vehicles->count() === 0) {
-            return response()->json(['error' => 'This user has no vehicles.'], 404);
+            return response()->json(['error' => 'Este usuário não possui veículos.'], 404);
         }
 
         $vehicleIds = $vehicles->pluck('id');
@@ -140,7 +140,7 @@ class FeaturesController extends Controller
         }
 
         if (!$readings || $readings->isEmpty()) {
-            return response()->json(['error' => 'No readings found for the specified vehicle(s) in the last week.'], 404);
+            return response()->json(['error' => 'Nenhuma leitura encontrada para o(s) veículo(s) especificado(s) na última semana.'], 404);
         }
 
         $fieldValues = [];
@@ -164,27 +164,29 @@ class FeaturesController extends Controller
 
         $messages = [];
         if ($averages['engine_rpm'] > 2000) {
-            $messages[] = "engine_rpm - Your RPM average is above 2000 RPM. You should avoid higher RPM to improve fuel economy.";
+            $messages[] = "engine_rpm - Sua média de RPM está acima de 2000 RPM. Você deve evitar RPMs mais altos para melhorar a economia de combustível.";
         }
         if ($averages['vehicle_speed'] > 100) {
-            $messages[] = "vehicle_speed - Your average vehicle speed is above 100 km/h. Driving at high speeds may decrease fuel efficiency and increase the risk of accidents.";
+            $messages[] = "vehicle_speed - Sua velocidade média do veículo está acima de 100 km/h. Dirigir em altas velocidades pode diminuir a eficiência do combustível e aumentar o risco de acidentes.";
         }
 
         if ($averages['oxygen_sensor_1_fuel_air_eq_ratio'] < 14.7) {
-            $messages[] = "oxygen_sensor_1_fuel_air_eq_ratio - Your fuel mixture appears to be rich. This may lead to decreased fuel efficiency and increased emissions.";
+            $messages[] = "oxygen_sensor_1_fuel_air_eq_ratio - Sua mistura de combustível parece estar rica. Isso pode levar a uma diminuição na eficiência do combustível e aumento das emissões.";
         }
 
         if ($averages['oxygen_sensor_1_fuel_air_eq_ratio'] > 14.7) {
-            $messages[] = "oxygen_sensor_1_fuel_air_eq_ratio - Your fuel mixture appears to be lean. This may lead to engine misfires and increased emissions.";
+            $messages[] = "oxygen_sensor_1_fuel_air_eq_ratio - Sua mistura de combustível parece estar pobre. Isso pode levar a falhas de ignição do motor e aumento das emissões.";
         }
 
+
         if ($averages['intake_air_temperature'] > 40) {
-            $messages[] = "intake_air_temperature - Your intake air temperature is above normal. This may affect engine performance and fuel efficiency.";
+            $messages[] = "intake_air_temperature - Sua temperatura de admissão de ar está acima do normal. Isso pode afetar o desempenho do motor e a eficiência do combustível.";
         }
 
         if ($averages['maf_air_flow_rate'] < 3.0) {
-            $messages[] = "maf_air_flow_rate - Your Mass Airflow Sensor (MAF) readings are lower than expected. This may indicate a problem with the air intake system.";
+            $messages[] = "maf_air_flow_rate - Suas leituras do Sensor de Fluxo de Ar Massivo (MAF) estão mais baixas do que o esperado. Isso pode indicar um problema com o sistema de entrada de ar.";
         }
+
 
 
         return response()->json([
