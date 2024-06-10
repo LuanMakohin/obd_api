@@ -29,6 +29,7 @@ class VehicleRequest extends FormRequest
             'type' => 'required|string|max:255',
             'year' => 'required|integer|min:1700',
             'mileage' => 'required|integer|min:0',
+            'user_id' => 'required|integer'
         ];
     }
 
@@ -50,6 +51,8 @@ class VehicleRequest extends FormRequest
             'mileage.required' => 'The mileage field is required.',
             'mileage.integer' => 'The mileage must be an integer.',
             'mileage.min' => 'The mileage must be a non-negative integer.',
+            'user_id.required' => 'The car needs a user to be attached to',
+            'user_id.integer' => 'The id needs to be a non-negative integer'
         ];
     }
 

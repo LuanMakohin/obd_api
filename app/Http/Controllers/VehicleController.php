@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VehicleRequest;
+use App\Models\User;
 use App\Models\Vehicle;
 
 class VehicleController extends Controller
@@ -30,7 +31,10 @@ class VehicleController extends Controller
      */
     public function store(VehicleRequest $request)
     {
-        $vehicle = Vehicle::create($request->all());
+        $user = User::find($request->user_id);
+        $vehicle = Vehicle::create($request->except('user_id'));
+
+        $user->vehicles()->attach($vehicle->id);
 
         return response()->json($vehicle, 201);
     }
@@ -65,7 +69,13 @@ class VehicleController extends Controller
             ], 200);
         }
 
-        $vehicle->update($request->all());
+        $oldUser = $vehicle->user->id;
+        $oldUser->vehicles()->detach($vehicle->id);
+
+        $newUser = User::find($request->user_id);
+        $vehicle->update($request->except('user_id'));
+
+        $newUser->vehicles()->attach($vehicle->id);
 
         return response()->json($vehicle, 200);
     }
@@ -82,6 +92,9 @@ class VehicleController extends Controller
                 'message' => 'Vehicle not found',
             ], 200);
         }
+
+        $user = $vehicle->user->id;
+        $user->vehicles()->detach($vehicle->id);
 
         $vehicle->delete();
 

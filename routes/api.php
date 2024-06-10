@@ -6,6 +6,7 @@ use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ReadController;
+use App\Http\Controllers\FeaturesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('manufacturers', ManufacturerController::class);
     Route::resource('vehicles', VehicleController::class);
     Route::resource('reads', ReadController::class);
+
+    Route::get('warnings/{userId}/{vehicleId?}', [FeaturesController::class, 'warnings'])->name('warnings');
+    Route::get('last-week/{userId}/{vehicleId?}', [FeaturesController::class, 'lastWeek'])->name('lastWeek');
+    Route::get('averages/{userId}/{vehicleId?}', [FeaturesController::class, 'averagesAndMessages'])->name('averagesAndMessages');
 });

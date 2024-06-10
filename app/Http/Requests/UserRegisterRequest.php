@@ -27,6 +27,7 @@ class UserRegisterRequest extends FormRequest
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
+            'plan' => 'required|string|'
         ];
     }
 
@@ -45,6 +46,7 @@ class UserRegisterRequest extends FormRequest
             'password.required' => 'The password field is required.',
             'password.string' => 'The password must be a string.',
             'password.min' => 'The password must be at least 8 characters.',
+            'plan.required' => 'The plan must be informed to proceed.'
         ];
     }
 

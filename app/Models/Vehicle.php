@@ -19,4 +19,8 @@ class Vehicle extends Model
         return $this->hasMany(Read::class);
     }
 
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
+
 }

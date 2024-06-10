@@ -15,7 +15,8 @@ class UserAuthController extends Controller
             $registerUserData = $request->validate([
                 'name'=>'required|string',
                 'email'=>'required|string|email|unique:users',
-                'password'=>'required|min:8'
+                'password'=>'required|min:8',
+                'plan' => 'required'
             ]);
         }catch (\Exception $e) {
             return response()->json(['message' => 'Invalid username or password']);
@@ -25,6 +26,7 @@ class UserAuthController extends Controller
             'name' => $registerUserData['name'],
             'email' => $registerUserData['email'],
             'password' => Hash::make($registerUserData['password']),
+            'plan' => $registerUserData['plan']
         ]);
         return response()->json([
             'message' => 'User Created ',
@@ -46,6 +48,9 @@ class UserAuthController extends Controller
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
         return response()->json([
             'access_token' => $token,
+            'id' => $user->id,
+            'email' => $user->email,
+            'name' => $user->name
         ]);
     }
 
