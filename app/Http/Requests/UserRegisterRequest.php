@@ -37,16 +37,16 @@ class UserRegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'The name field is required.',
-            'name.string' => 'The name must be a string.',
-            'email.required' => 'The email field is required.',
-            'email.string' => 'The email must be a string.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',
-            'password.required' => 'The password field is required.',
-            'password.string' => 'The password must be a string.',
-            'password.min' => 'The password must be at least 8 characters.',
-            'plan.required' => 'The plan must be informed to proceed.'
+            'name.required' => 'O campo de nome é obrigatório.',
+            'name.string' => 'O nome deve ser uma string.',
+            'email.required' => 'O campo de e-mail é obrigatório.',
+            'email.string' => 'O e-mail deve ser uma string.',
+            'email.email' => 'O e-mail deve ser um endereço de e-mail válido.',
+            'email.unique' => 'O e-mail já está sendo utilizado.',
+            'password.required' => 'O campo de senha é obrigatório.',
+            'password.string' => 'A senha deve ser uma string.',
+            'password.min' => 'A senha deve ter pelo menos 8 caracteres.',
+            'plan.required' => 'O plano deve ser informado para prosseguir.'
         ];
     }
 

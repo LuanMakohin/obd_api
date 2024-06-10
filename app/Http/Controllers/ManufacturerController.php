@@ -8,7 +8,7 @@ use App\Models\Manufacturer;
 class ManufacturerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista dos recursos.
      */
     public function index()
     {
@@ -16,7 +16,7 @@ class ManufacturerController extends Controller
 
         if (sizeof($manufacturers) === 0) {
             return response()->json([
-                'message' => 'No Manufacturers found',
+                'message' => 'Nenhum fabricante encontrado',
             ], 200);
         }
 
@@ -26,7 +26,7 @@ class ManufacturerController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena um novo recurso criado.
      */
     public function store(ManufacturerRequest $request)
     {
@@ -36,7 +36,7 @@ class ManufacturerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe o recurso especificado.
      */
     public function show($id)
     {
@@ -44,7 +44,7 @@ class ManufacturerController extends Controller
 
         if (!$manufacturer) {
             return response()->json([
-                'message' => 'Manufacturer not found',
+                'message' => 'Fabricante não encontrado',
             ], 200);
         }
 
@@ -53,7 +53,7 @@ class ManufacturerController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza o recurso especificado.
      */
     public function update(ManufacturerRequest $request,  $id)
     {
@@ -61,7 +61,7 @@ class ManufacturerController extends Controller
 
         if (!$manufacturer) {
             return response()->json([
-                'message' => 'Manufacturer not found',
+                'message' => 'Fabricante não encontrado',
             ], 200);
         }
 
@@ -71,7 +71,7 @@ class ManufacturerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove o recurso especificado do armazenamento.
      */
     public function destroy($id)
     {
@@ -79,7 +79,7 @@ class ManufacturerController extends Controller
 
         if (!$manufacturer) {
             return response()->json([
-                'message' => 'Manufacturer not found',
+                'message' => 'Fabricante não encontrado',
             ], 200);
         }
 

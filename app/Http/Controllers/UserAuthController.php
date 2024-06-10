@@ -19,7 +19,7 @@ class UserAuthController extends Controller
                 'plan' => 'required'
             ]);
         }catch (\Exception $e) {
-            return response()->json(['message' => 'Invalid username or password']);
+            return response()->json(['message' => 'Nome de usuário ou senha inválidos']);
         }
 
         $user = User::create([
@@ -29,7 +29,7 @@ class UserAuthController extends Controller
             'plan' => $registerUserData['plan']
         ]);
         return response()->json([
-            'message' => 'User Created ',
+            'message' => 'Usuário Criado ',
         ]);
     }
 
@@ -42,7 +42,7 @@ class UserAuthController extends Controller
         $user = User::where('email', $loginUserData['email'])->first();
         if (!$user || !Hash::check($loginUserData['password'], $user->password)) {
             return response()->json([
-                'message' => 'Invalid Credentials'
+                'message' => 'Credenciais inválidas'
             ], 401);
         }
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
@@ -58,7 +58,7 @@ class UserAuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json([
-            "message"=>"logged out"
+            "message"=>"Saiu"
         ]);
     }
 }

@@ -36,23 +36,23 @@ class VehicleRequest extends FormRequest
     public function messages()
     {
         return [
-            'manufacturer_id.required' => 'The manufacturer ID field is required.',
-            'manufacturer_id.integer' => 'The manufacturer ID must be an integer.',
-            'manufacturer_id.min' => 'The manufacturer ID must be a non-negative integer.',
-            'model.required' => 'The model field is required.',
-            'model.string' => 'The model must be a string.',
-            'model.max' => 'The model may not be greater than 255 characters.',
-            'type.required' => 'The type field is required.',
-            'type.string' => 'The type must be a string.',
-            'type.max' => 'The type may not be greater than 255 characters.',
-            'year.required' => 'The year field is required.',
-            'year.integer' => 'The year must be an integer.',
-            'year.min' => 'The year must be a non-negative integer.',
-            'mileage.required' => 'The mileage field is required.',
-            'mileage.integer' => 'The mileage must be an integer.',
-            'mileage.min' => 'The mileage must be a non-negative integer.',
-            'user_id.required' => 'The car needs a user to be attached to',
-            'user_id.integer' => 'The id needs to be a non-negative integer'
+            'manufacturer_id.required' => 'O campo ID do fabricante é obrigatório.',
+            'manufacturer_id.integer' => 'O ID do fabricante deve ser um número inteiro.',
+            'manufacturer_id.min' => 'O ID do fabricante deve ser um número inteiro não negativo.',
+            'model.required' => 'O campo do modelo é obrigatório.',
+            'model.string' => 'O modelo deve ser uma string.',
+            'model.max' => 'O modelo não pode ter mais de 255 caracteres.',
+            'type.required' => 'O campo do tipo é obrigatório.',
+            'type.string' => 'O tipo deve ser uma string.',
+            'type.max' => 'O tipo não pode ter mais de 255 caracteres.',
+            'year.required' => 'O campo do ano é obrigatório.',
+            'year.integer' => 'O ano deve ser um número inteiro.',
+            'year.min' => 'O ano deve ser um número inteiro não negativo.',
+            'mileage.required' => 'O campo da quilometragem é obrigatório.',
+            'mileage.integer' => 'A quilometragem deve ser um número inteiro.',
+            'mileage.min' => 'A quilometragem deve ser um número inteiro não negativo.',
+            'user_id.required' => 'O carro precisa de um usuário para ser associado.',
+            'user_id.integer' => 'O ID precisa ser um número inteiro não negativo.'
         ];
     }
 

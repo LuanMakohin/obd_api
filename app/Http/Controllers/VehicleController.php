@@ -17,7 +17,7 @@ class VehicleController extends Controller
 
         if (sizeof($vehicles) === 0) {
             return response()->json([
-                'message' => 'No vehicles found',
+                'message' => 'Nenhum veículo encontrado',
             ], 200);
         }
 
@@ -48,7 +48,7 @@ class VehicleController extends Controller
 
         if (!$vehicle) {
             return response()->json([
-                'message' => 'Vehicle not found',
+                'message' => 'Veículo não encontrado',
             ], 200);
         }
 
@@ -65,7 +65,7 @@ class VehicleController extends Controller
 
         if (!$vehicle) {
             return response()->json([
-                'message' => 'Vehicle not found',
+                'message' => 'Veículo não encontrado',
             ], 200);
         }
 
@@ -89,7 +89,7 @@ class VehicleController extends Controller
 
         if (!$vehicle) {
             return response()->json([
-                'message' => 'Vehicle not found',
+                'message' => 'Veículo não encontrado',
             ], 200);
         }
 

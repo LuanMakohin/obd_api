@@ -8,7 +8,7 @@ use App\Models\Read;
 class ReadController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista dos recursos.
      */
     public function index()
     {
@@ -16,7 +16,7 @@ class ReadController extends Controller
 
         if (sizeof($reads) === 0) {
             return response()->json([
-                'message' => 'No Reads found',
+                'message' => 'Nenhuma leitura encontrada',
             ], 200);
         }
 
@@ -26,7 +26,7 @@ class ReadController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena um novo recurso criado.
      */
     public function store(ReadRequest $request)
     {
@@ -36,7 +36,7 @@ class ReadController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe o recurso especificado.
      */
     public function show($id)
     {
@@ -44,7 +44,7 @@ class ReadController extends Controller
 
         if (!$read) {
             return response()->json([
-                'message' => 'Read not found',
+                'message' => 'Leitura não encontrada',
             ], 200);
         }
 
@@ -53,7 +53,7 @@ class ReadController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza o recurso especificado no armazenamento.
      */
     public function update(ReadRequest $request,  $id)
     {
@@ -61,7 +61,7 @@ class ReadController extends Controller
 
         if (!$read) {
             return response()->json([
-                'message' => 'Read not found',
+                'message' => 'Leitura não encontrada',
             ], 200);
         }
 
@@ -71,7 +71,7 @@ class ReadController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove o recurso especificado do armazenamento.
      */
     public function destroy($id)
     {
@@ -79,7 +79,7 @@ class ReadController extends Controller
 
         if (!$read) {
             return response()->json([
-                'message' => 'Read not found',
+                'message' => 'Leitura não encontrada',
             ], 200);
         }
 

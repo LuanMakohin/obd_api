@@ -35,12 +35,12 @@ class UserLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'The email field is required.',
-            'email.string' => 'The email must be a string.',
-            'email.email' => 'The email must be a valid email address.',
-            'password.required' => 'The password field is required.',
-            'password.string' => 'The password must be a string.',
-            'password.min' => 'The password must be at least 8 characters.',
+            'email.required' => 'O campo de e-mail é obrigatório.',
+            'email.string' => 'O e-mail deve ser uma string.',
+            'email.email' => 'O e-mail deve ser um endereço de e-mail válido.',
+            'password.required' => 'O campo de senha é obrigatório.',
+            'password.string' => 'A senha deve ser uma string.',
+            'password.min' => 'A senha deve ter pelo menos 8 caracteres.',
         ];
     }
 
