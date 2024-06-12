@@ -50,7 +50,8 @@ class UserAuthController extends Controller
             'access_token' => $token,
             'id' => $user->id,
             'email' => $user->email,
-            'name' => $user->name
+            'name' => $user->name,
+            'plan' => $user->plan
         ]);
     }
 
