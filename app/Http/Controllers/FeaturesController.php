@@ -20,7 +20,7 @@ class FeaturesController extends Controller
         if (!$user) {
             return response()->json(['error' => 'Usuário não encontrado.'], 404);
         }
-        $vehicles = $user->vehicles;
+        $vehicles = $user->vehicles ?: null;
 
         if (!$vehicles || $vehicles->count() === 0) {
             return response()->json(['error' => 'Este usuário não possui veículos.'], 404);
@@ -56,7 +56,7 @@ class FeaturesController extends Controller
         if (!$user) {
             return response()->json(['error' => 'Usuário não encontrado.'], 404);
         }
-        $vehicles = $user->vehicles;
+        $vehicles = $user->vehicles ?: null;
 
         if (!$vehicles || $vehicles->count() === 0) {
             return response()->json(['error' => 'Este usuário não possui veículos.'], 404);
@@ -125,7 +125,7 @@ class FeaturesController extends Controller
             return response()->json(['error' => 'Usuário não encontrado.'], 404);
         }
 
-        $vehicles = $user->vehicles;
+        $vehicles = $user->vehicles ?: null;
 
         if (!$vehicles || $vehicles->count() === 0) {
             return response()->json(['error' => 'Este usuário não possui veículos.'], 404);
