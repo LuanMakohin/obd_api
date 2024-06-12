@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Read;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class FeaturesController extends Controller
 {
+
+    public function getUser() {
+        return response()->json(Auth::user(), 200);
+    }
+
     public function lastWeek($userId, $vehicleId = null) {
         $user = User::find($userId);
 

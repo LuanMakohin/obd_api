@@ -35,4 +35,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('warnings/{userId}/{vehicleId?}', [FeaturesController::class, 'warnings'])->name('warnings');
     Route::get('last-week/{userId}/{vehicleId?}', [FeaturesController::class, 'lastWeek'])->name('lastWeek');
     Route::get('averages/{userId}/{vehicleId?}', [FeaturesController::class, 'averagesAndMessages'])->name('averagesAndMessages');
+    Route::get('user', [FeaturesController::class, 'getUser'])->name('getUser');
 });
